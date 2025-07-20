@@ -21,7 +21,7 @@ jobs:
         uses: repo-sync/pull-request@v2
         with:
           source_branch: ${{ github.ref_name }}
-          destination_branch: "dl_rv1126"
-          pr_title: "Auto PR: ${{ github.ref_name }} → dl_rv1126"
+          destination_branch: "main"
+          pr_title: "Auto PR: ${{ github.ref_name }} → main"
           pr_body: "This PR was automatically generated."
           github_token: ${{ secrets.PUBLIC_ACCESS_TOKEN }}

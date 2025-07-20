@@ -1,0 +1,27 @@
+name: Auto Create PR
+
+on:
+  push:
+    branches:
+      - dev_*
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure Git User
+        run: |
+          git config --global user.name "DesignLibro code review"
+          git config --global user.email "dlyfb@designlibro.com"
+
+      - name: Create Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ github.ref_name }}
+          destination_branch: "dl_rv1126"
+          pr_title: "Auto PR: ${{ github.ref_name }} → dl_rv1126"
+          pr_body: "This PR was automatically generated."
+          github_token: ${{ secrets.PUBLIC_ACCESS_TOKEN }}
